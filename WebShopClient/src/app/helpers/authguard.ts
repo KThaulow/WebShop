@@ -13,6 +13,7 @@ export class AuthGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
 
         if (!this.helper.isAuthenticated()) {
+            console.log('Redirecting to login')
             // Not authorized, redirect to login page with return URL
             this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
             return false;

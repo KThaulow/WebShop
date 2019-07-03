@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './layout/app.component';
+import { AppComponent } from './layout/app-component/app.component';
 
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
@@ -10,8 +10,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HeadComponent } from './layout/head.component';
-import { LeftPanelComponent } from './layout/left-panel.component';
 import { LoginComponent } from './components/identity/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/identity/users/users.component'
@@ -25,16 +23,16 @@ import { JwtInterceptor } from './helpers/jwt-interceptor';
 import { fakeBackendProvider } from './helpers/fake-backend-interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
+import { HomeComponent } from './layout/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeadComponent,
-    LeftPanelComponent,
     LoginComponent,
     DashboardComponent,
     UsersComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

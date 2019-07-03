@@ -17,8 +17,11 @@ export class RegisterComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService
   ) {
+    console.log('RegisterComponent')
+
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
+      console.log('Is already logged in')
       this.router.navigate(['/']);
     }
   }
@@ -36,6 +39,8 @@ export class RegisterComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
+    console.log('Submitting')
+
     this.submitted = true;
 
     // stop here if form is invalid

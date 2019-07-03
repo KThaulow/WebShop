@@ -49,9 +49,11 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          console.log('hej');
           this.router.navigate([this.returnUrl]);
         },
         error => {
+          console.error('error 123');
           this.loading = false;
         });
   }
