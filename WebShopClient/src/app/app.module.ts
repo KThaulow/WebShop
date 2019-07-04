@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './layout/app-component/app.component';
+import { AppComponent } from './components/app-component/app.component';
 
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
@@ -10,29 +10,27 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoginComponent } from './components/identity/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { UsersComponent } from './components/identity/users/users.component'
-import { Helpers } from './helpers/helpers';
-import { TokenService } from './services/token.service';
+import { LoginComponent } from './layout/identity/login/login.component';
+import { UsersComponent } from './layout/identity/users/users.component'
 import { AppConfig } from './config/config';
 import { AuthGuard } from './helpers/authguard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RegisterComponent } from './components/identity/register/register.component';
-import { JwtInterceptor } from './helpers/jwt-interceptor';
-import { fakeBackendProvider } from './helpers/fake-backend-interceptor';
+import { RegisterComponent } from './layout/identity/register/register.component';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { fakeBackendProvider } from './helpers/fake-backend.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { HomeComponent } from './layout/home/home.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent,
     UsersComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -47,8 +45,6 @@ import { HomeComponent } from './layout/home/home.component';
     ReactiveFormsModule
   ],
   providers: [
-    Helpers,
-    TokenService,
     AppConfig,
     AuthGuard,
     UserService,
