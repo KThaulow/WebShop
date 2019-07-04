@@ -8,7 +8,7 @@
     text-align: center;
 }
 
-#myFooter .container{
+#myFooter .center{
     text-align: center;
 }
 
@@ -33,4 +33,13 @@
     display: inline-block;
     margin: 0px 15px;
     line-height: 0;
+}
+
+#myFooter .right{
+    float: right;   
+}
+
+#myFooter .logo{
+    height: 60px;   
+    margin: 0px 20px;
 }
