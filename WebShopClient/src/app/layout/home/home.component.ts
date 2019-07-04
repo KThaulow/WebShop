@@ -1,34 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
-import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
 
-@Component({ templateUrl: 'home.component.html' })
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
+})
 export class HomeComponent implements OnInit {
-  currentUser: User;
-  users = [];
+  private currentUser: User;
 
-  constructor(
-    private authenticationService: AuthenticationService,
-    private userService: UserService
-  ) {
+  constructor(private authenticationService: AuthenticationService) {
     this.currentUser = this.authenticationService.currentUserValue;
   }
 
   ngOnInit() {
-    this.loadAllUsers();
   }
 
-  deleteUser(id: number) {
-    this.userService.delete(id)
-      .pipe(first())
-      .subscribe(() => this.loadAllUsers());
-  }
-
-  private loadAllUsers() {
-    this.userService.getAll()
-      .pipe(first())
-      .subscribe(users => this.users = users);
-  }
 }

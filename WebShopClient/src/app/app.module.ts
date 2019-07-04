@@ -22,6 +22,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { HomeComponent } from './layout/home/home.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { AccountComponent } from './layout/account/account.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { HeaderComponent } from './layout/header/header.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { AlertComponent } from './components/alert/alert.component';
     UsersComponent,
     RegisterComponent,
     HomeComponent,
-    AlertComponent
+    AlertComponent,
+    AccountComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

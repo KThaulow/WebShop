@@ -1,0 +1,13 @@
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="navbar-nav" mr-auto>
+        <!-- Left -->
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+    </div>
+    <div class="navbar-nav  ml-auto">
+        <!-- Right -->
+        <a class="nav-item nav-link" routerLink="/account" *ngIf="currentUser">Account</a>
+        <a class="nav-item nav-link" (click)="logout()" routerLink="/login" *ngIf=" currentUser">Logout</a>
+        <a class="nav-item nav-link" routerLink="/login" *ngIf="!currentUser">Login</a>
+    </div>
+</nav>
