@@ -1,0 +1,14 @@
+D:\CodeProjects\WebShop\WebShopServer\WebShop\bin\Debug\netcoreapp2.2\WebShop.deps.json
+D:\CodeProjects\WebShop\WebShopServer\WebShop\bin\Debug\netcoreapp2.2\WebShop.runtimeconfig.json
+D:\CodeProjects\WebShop\WebShopServer\WebShop\bin\Debug\netcoreapp2.2\WebShop.runtimeconfig.dev.json
+D:\CodeProjects\WebShop\WebShopServer\WebShop\bin\Debug\netcoreapp2.2\WebShop.dll
+D:\CodeProjects\WebShop\WebShopServer\WebShop\bin\Debug\netcoreapp2.2\WebShop.pdb
+D:\CodeProjects\WebShop\WebShopServer\WebShop\obj\Debug\netcoreapp2.2\WebShop.csprojAssemblyReference.cache
+D:\CodeProjects\WebShop\WebShopServer\WebShop\obj\Debug\netcoreapp2.2\WebShop.csproj.CoreCompileInputs.cache
+D:\CodeProjects\WebShop\WebShopServer\WebShop\obj\Debug\netcoreapp2.2\WebShop.RazorAssemblyInfo.cache
+D:\CodeProjects\WebShop\WebShopServer\WebShop\obj\Debug\netcoreapp2.2\WebShop.RazorAssemblyInfo.cs
+D:\CodeProjects\WebShop\WebShopServer\WebShop\obj\Debug\netcoreapp2.2\WebShop.AssemblyInfoInputs.cache
+D:\CodeProjects\WebShop\WebShopServer\WebShop\obj\Debug\netcoreapp2.2\WebShop.AssemblyInfo.cs
+D:\CodeProjects\WebShop\WebShopServer\WebShop\obj\Debug\netcoreapp2.2\WebShop.RazorTargetAssemblyInfo.cache
+D:\CodeProjects\WebShop\WebShopServer\WebShop\obj\Debug\netcoreapp2.2\WebShop.dll
+D:\CodeProjects\WebShop\WebShopServer\WebShop\obj\Debug\netcoreapp2.2\WebShop.pdb

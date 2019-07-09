@@ -4,21 +4,21 @@ import { Injectable } from '@angular/core';
 
 export class AppConfig {
 
-  
+
 
     private _config: { [key: string]: string };
 
     constructor() {
 
-        this._config = { 
+        this._config = {
 
-            PathAPI: 'http://localhost:50498/api/'
+            PathAPI: 'http://localhost:44387/api/'
 
         };
 
     }
 
-    get setting():{ [key: string]: string } {
+    get setting(): { [key: string]: string } {
 
         return this._config;
 

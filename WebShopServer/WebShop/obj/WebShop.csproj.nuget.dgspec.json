@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CodeProjects\\WebShop\\WebShopServer\\WebShop\\WebShop\\WebShop.csproj": {}
+    "D:\\CodeProjects\\WebShop\\WebShopServer\\WebShop\\WebShop.csproj": {}
   },
   "projects": {
-    "D:\\CodeProjects\\WebShop\\WebShopServer\\WebShop\\WebShop\\WebShop.csproj": {
+    "D:\\CodeProjects\\WebShop\\WebShopServer\\WebShop\\WebShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CodeProjects\\WebShop\\WebShopServer\\WebShop\\WebShop\\WebShop.csproj",
+        "projectUniqueName": "D:\\CodeProjects\\WebShop\\WebShopServer\\WebShop\\WebShop.csproj",
         "projectName": "WebShop",
-        "projectPath": "D:\\CodeProjects\\WebShop\\WebShopServer\\WebShop\\WebShop\\WebShop.csproj",
+        "projectPath": "D:\\CodeProjects\\WebShop\\WebShopServer\\WebShop\\WebShop.csproj",
         "packagesPath": "C:\\Users\\krist\\.nuget\\packages\\",
-        "outputPath": "D:\\CodeProjects\\WebShop\\WebShopServer\\WebShop\\WebShop\\obj\\",
+        "outputPath": "D:\\CodeProjects\\WebShop\\WebShopServer\\WebShop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -57,6 +57,10 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[2.2.4, )"
             }
           },
           "imports": [
