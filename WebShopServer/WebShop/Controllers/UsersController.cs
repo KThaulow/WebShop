@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WebShop.Models;
+using WebShop.Models.Repositories;
 using WebShop.Models.Users;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,43 +14,58 @@ namespace WebShop.Controllers
 	[Route("api/[controller]")]
 	public class UsersController : Controller
 	{
-		private IUserRepository m_userRepository;
+		private IRepositoryUnitOfWork m_repository;
 
-		public UsersController(IUserRepository userRepository)
+		public UsersController(IRepositoryUnitOfWork repository)
 		{
-			m_userRepository = userRepository;
+			m_repository = repository;
 		}
 
 		// GET: api/<controller>
 		[HttpGet]
-		public IEnumerable<string> Get()
+		public IEnumerable<User> Get()
 		{
-			return new string[] { "value1", "value2" };
+			return m_repository.User.FindAll();
 		}
 
 		// GET api/<controller>/5
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public User Get(int id)
 		{
-			return "value";
+			return m_repository.User.FindByCondition(e => e.Id == id).FirstOrDefault();
 		}
 
 		// POST api/<controller>
-		[HttpPost]
-		public void Post([FromBody]string value)
+		[HttpPost("authenticate")]
+		public IActionResult Authenticate([FromBody]dynamic login)
 		{
+			string username = login.username;
+			string password = login.password;
+
+			var user = m_repository.User.FindByCondition(e => e.Username == username && e.Password == password).FirstOrDefault();
+
+			if (user != null)
+			{
+				return Ok(user);
+			}
+
+			return Unauthorized();
 		}
 
-		// PUT api/<controller>/5
-		[HttpPut("{id}")]
-		public void Put(int id, [FromBody]string value)
+		// PUT api/<controller>
+		[HttpPut]
+		public void Put([FromBody]User user)
 		{
+			m_repository.User.Create(user);
+			m_repository.Save();
 		}
 
 		// DELETE api/<controller>/5
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
+			m_repository.User.Delete(id);
+			m_repository.Save();
 		}
 	}
 }

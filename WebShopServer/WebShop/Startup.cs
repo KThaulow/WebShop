@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using WebShop.Models;
+using WebShop.Models.Repositories;
 using WebShop.Models.Users;
 
 namespace WebShop
@@ -29,14 +31,15 @@ namespace WebShop
 		{
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-			//services.AddEntityFrameworkNpgsql().AddDbContext<UserContext>().BuildServiceProvider();
+			services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+			{
+				builder.AllowAnyOrigin()
+					   .AllowAnyMethod()
+					   .AllowAnyHeader();
+			}));
 
-			services.AddSingleton<IUserRepository, UserRepository>();
-			services.AddSingleton<IUserContext, UserContext>();
-
-			services.AddDbContext<UserContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-
-
+			services.AddScoped<IRepositoryUnitOfWork, RepositoryUnitOfWork>();
+			services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +55,7 @@ namespace WebShop
 				app.UseHsts();
 			}
 
+			app.UseCors("MyPolicy");
 			app.UseHttpsRedirection();
 			app.UseMvc();
 		}

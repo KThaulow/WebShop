@@ -19,7 +19,7 @@ export class UserService {
     }
 
     register(user: User) {
-        return this.http.post(`${this.pathAPI}/users/register`, user);
+        return this.http.put(`${this.pathAPI}/users`, user);
     }
 
     delete(id: number) {

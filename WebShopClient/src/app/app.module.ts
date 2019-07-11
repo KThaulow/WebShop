@@ -57,7 +57,8 @@ import { HeaderComponent } from './layout/header/header.component';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 
     // provider used to create fake backend
-    fakeBackendProvider],
+    // fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
