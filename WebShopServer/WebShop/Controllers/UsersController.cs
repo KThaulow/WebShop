@@ -37,7 +37,7 @@ namespace WebShop.Controllers
 
 		// POST api/<controller>
 		[HttpPost("authenticate")]
-		public IActionResult Authenticate([FromBody]dynamic login)
+		public ActionResult<User> Authenticate([FromBody]dynamic login)
 		{
 			string username = login.username;
 			string password = login.password;
@@ -46,10 +46,10 @@ namespace WebShop.Controllers
 
 			if (user != null)
 			{
-				return Ok(user);
+				return user;
 			}
 
-			return Unauthorized();
+			return Unauthorized("Username or password is incorrect");
 		}
 
 		// PUT api/<controller>
