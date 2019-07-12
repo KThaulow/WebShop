@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Models;
 using WebShop.Models.Repositories;
+using WebShop.Models.Security;
 using WebShop.Models.Users;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,10 +16,12 @@ namespace WebShop.Controllers
 	public class UsersController : Controller
 	{
 		private IRepositoryUnitOfWork m_repository;
+		private IJwtManager m_jwtManager;
 
-		public UsersController(IRepositoryUnitOfWork repository)
+		public UsersController(IRepositoryUnitOfWork repository, IJwtManager jwtManager)
 		{
 			m_repository = repository;
+			m_jwtManager = jwtManager;
 		}
 
 		// GET: api/<controller>
@@ -37,7 +40,7 @@ namespace WebShop.Controllers
 
 		// POST api/<controller>
 		[HttpPost("authenticate")]
-		public ActionResult<User> Authenticate([FromBody]dynamic login)
+		public ActionResult<User> Authenticate([FromBody]dynamic login) // TODO: create login class
 		{
 			string username = login.username;
 			string password = login.password;
@@ -46,6 +49,8 @@ namespace WebShop.Controllers
 
 			if (user != null)
 			{
+				var token = m_jwtManager.GenerateToken(user.Username);
+				user.Token = token;
 				return user;
 			}
 

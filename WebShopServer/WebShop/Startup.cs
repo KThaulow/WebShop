@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WebShop.Models;
 using WebShop.Models.Repositories;
+using WebShop.Models.Security;
 using WebShop.Models.Users;
 
 namespace WebShop
@@ -39,6 +40,7 @@ namespace WebShop
 			}));
 
 			services.AddScoped<IRepositoryUnitOfWork, RepositoryUnitOfWork>();
+			services.AddScoped<IJwtManager, JwtManager>();
 			services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 		}
 
