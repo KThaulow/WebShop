@@ -15,7 +15,7 @@ namespace WebShop.Models.Security
 
 		public JwtManager(IConfiguration configuration)
 		{
-			m_secret = configuration["Token"];
+			m_secret = configuration["Secret"];
 		}
 
 		public string GenerateToken(string username, int expireMinutes = 20)

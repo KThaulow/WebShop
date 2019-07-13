@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Models;
 using WebShop.Models.Repositories;
@@ -24,21 +25,19 @@ namespace WebShop.Controllers
 			m_jwtManager = jwtManager;
 		}
 
-		// GET: api/<controller>
 		[HttpGet]
 		public IEnumerable<User> Get()
 		{
 			return m_repository.User.FindAll();
 		}
 
-		// GET api/<controller>/5
 		[HttpGet("{id}")]
 		public User Get(int id)
 		{
 			return m_repository.User.FindByCondition(e => e.Id == id).FirstOrDefault();
 		}
 
-		// POST api/<controller>
+		[AllowAnonymous]
 		[HttpPost("authenticate")]
 		public ActionResult<User> Authenticate([FromBody]dynamic login) // TODO: create login class
 		{
@@ -57,7 +56,7 @@ namespace WebShop.Controllers
 			return Unauthorized("Username or password is incorrect");
 		}
 
-		// PUT api/<controller>
+		[AllowAnonymous]
 		[HttpPut]
 		public void Put([FromBody]User user)
 		{
@@ -65,7 +64,6 @@ namespace WebShop.Controllers
 			m_repository.Save();
 		}
 
-		// DELETE api/<controller>/5
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
