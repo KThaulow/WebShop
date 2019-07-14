@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -32,14 +33,6 @@ namespace WebShop
 		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
-
-			var optionsBuilder = new DbContextOptionsBuilder<IdentityContext>();
-			optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-			// Ensure Identity DB is created
-			using (var context = new IdentityContext(optionsBuilder.Options))
-			{
-				context.Database.EnsureCreated();
-			}
 		}
 
 		public IConfiguration Configuration { get; }
@@ -53,15 +46,37 @@ namespace WebShop
 			// Configure CORS
 			ConfigureCORS(services);
 
-			// Configure JWT authentication
-			ConfigureJWTAuthentication(services);
-
 			// Configure DI
 			ConfigureDI(services);
 
 			// Configure identity
 			ConfigureIdentity(services);
 
+			// Configure JWT authentication
+			ConfigureJWTAuthentication(services);
+
+		}
+
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env, IdentityContext dbContext)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+			}
+			else
+			{
+				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+				app.UseHsts();
+			}
+
+			app.UseAuthentication();
+			app.UseCors("MyPolicy");
+			app.UseHttpsRedirection();
+			app.UseMvc();
+
+			// Create tables
+			dbContext.Database.EnsureCreated();
 		}
 
 		private void ConfigureDI(IServiceCollection services)
@@ -94,11 +109,14 @@ namespace WebShop
 
 		private void ConfigureJWTAuthentication(IServiceCollection services)
 		{
+			JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
+
 			var secret = Configuration["Secret"];
 			var key = Convert.FromBase64String(secret);
 			services.AddAuthentication(x =>
 			{
 				x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+				x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 				x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 			})
 			.AddJwtBearer(x =>
@@ -115,24 +133,7 @@ namespace WebShop
 			});
 		}
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-		{
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-			}
-			else
-			{
-				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-				app.UseHsts();
-			}
 
-			app.UseAuthentication();
-			app.UseCors("MyPolicy");
-			app.UseHttpsRedirection();
-			app.UseMvc();
-		}
 
 
 		private void ConfigureIdentity(IServiceCollection services)
