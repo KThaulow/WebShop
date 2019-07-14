@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebShop.Models.Users
 {
-	public interface IUserRepository : IRepositoryBase<User>
+	public interface IUserRepository : IRepositoryBase<ApplicationUser>
 	{
 	}
 }

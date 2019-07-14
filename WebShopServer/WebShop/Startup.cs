@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WebShop.Models;
+using WebShop.Models.Identity;
 using WebShop.Models.Repositories;
 using WebShop.Models.Security;
 using WebShop.Models.Users;
@@ -30,6 +32,14 @@ namespace WebShop
 		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
+
+			var optionsBuilder = new DbContextOptionsBuilder<IdentityContext>();
+			optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+			// Ensure Identity DB is created
+			using (var context = new IdentityContext(optionsBuilder.Options))
+			{
+				context.Database.EnsureCreated();
+			}
 		}
 
 		public IConfiguration Configuration { get; }
@@ -37,7 +47,32 @@ namespace WebShop
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			// Add authorization by default to controllers
+			// Add authentication by default to controllers
+			ConfigureAuthentication(services);
+
+			// Configure CORS
+			ConfigureCORS(services);
+
+			// Configure JWT authentication
+			ConfigureJWTAuthentication(services);
+
+			// Configure DI
+			ConfigureDI(services);
+
+			// Configure identity
+			ConfigureIdentity(services);
+
+		}
+
+		private void ConfigureDI(IServiceCollection services)
+		{
+			services.AddScoped<IRepositoryUnitOfWork, RepositoryUnitOfWork>();
+			services.AddScoped<IJwtManager, JwtManager>();
+			services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+		}
+
+		private static void ConfigureAuthentication(IServiceCollection services)
+		{
 			services.AddMvc(config =>
 			{
 				var policy = new AuthorizationPolicyBuilder()
@@ -45,16 +80,20 @@ namespace WebShop
 								 .Build();
 				config.Filters.Add(new AuthorizeFilter(policy));
 			}).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+		}
 
-			// Configure CORS
+		private static void ConfigureCORS(IServiceCollection services)
+		{
 			services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 			{
 				builder.AllowAnyOrigin()
 					   .AllowAnyMethod()
 					   .AllowAnyHeader();
 			}));
+		}
 
-			// Configure JWT authentication
+		private void ConfigureJWTAuthentication(IServiceCollection services)
+		{
 			var secret = Configuration["Secret"];
 			var key = Convert.FromBase64String(secret);
 			services.AddAuthentication(x =>
@@ -74,11 +113,6 @@ namespace WebShop
 					ValidateAudience = false
 				};
 			});
-
-			// Configure DI
-			services.AddScoped<IRepositoryUnitOfWork, RepositoryUnitOfWork>();
-			services.AddScoped<IJwtManager, JwtManager>();
-			services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -98,6 +132,24 @@ namespace WebShop
 			app.UseCors("MyPolicy");
 			app.UseHttpsRedirection();
 			app.UseMvc();
+		}
+
+
+		private void ConfigureIdentity(IServiceCollection services)
+		{
+			services.AddDbContext<IdentityContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+			services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
+
+			services.Configure<IdentityOptions>(options =>
+			{
+				// Default Password settings.
+				options.Password.RequireDigit = false;
+				options.Password.RequireLowercase = false;
+				options.Password.RequireNonAlphanumeric = false;
+				options.Password.RequireUppercase = false;
+				options.Password.RequiredLength = 6;
+				options.Password.RequiredUniqueChars = 1;
+			});
 		}
 
 

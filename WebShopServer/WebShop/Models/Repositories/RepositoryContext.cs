@@ -15,6 +15,6 @@ namespace WebShop.Models
 		{
 		}
 
-		public DbSet<User> Users { get; set; }
+		public DbSet<ApplicationUser> Users { get; set; }
 	}
 }

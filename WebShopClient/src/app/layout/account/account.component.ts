@@ -29,6 +29,9 @@ export class AccountComponent implements OnInit {
   private loadAllUsers() {
     this.userService.getAll()
       .pipe(first())
-      .subscribe(users => this.users = users);
+      .subscribe(users => {
+        console.log(users);
+        this.users = users;
+      });
   }
 }

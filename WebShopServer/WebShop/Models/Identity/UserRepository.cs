@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace WebShop.Models.Users
 {
-	public class UserRepository : RepositoryBase<User>, IUserRepository
+	public class UserRepository : RepositoryBase<ApplicationUser>, IUserRepository
 	{
 
 		public UserRepository(RepositoryContext repositoryContext)
 			: base(repositoryContext)
 		{
-		}		
+		}
 	}
 }
