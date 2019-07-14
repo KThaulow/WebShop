@@ -18,15 +18,14 @@ namespace WebShop.Controllers
 	[Route("api/[controller]")]
 	public class UsersController : Controller
 	{
-		private IRepositoryUnitOfWork m_repository;
 		private IJwtManager m_jwtManager;
 		private UserManager<ApplicationUser> m_userManager = null;
 		private SignInManager<ApplicationUser> m_signInManager = null;
 
-		public UsersController(IRepositoryUnitOfWork repository, IJwtManager jwtManager, UserManager<ApplicationUser> userManager,
-		SignInManager<ApplicationUser> signInManager)
+		public UsersController(IJwtManager jwtManager,
+			UserManager<ApplicationUser> userManager,
+			SignInManager<ApplicationUser> signInManager)
 		{
-			m_repository = repository;
 			m_jwtManager = jwtManager;
 			m_userManager = userManager;
 			m_signInManager = signInManager;
@@ -36,26 +35,20 @@ namespace WebShop.Controllers
 		public IEnumerable<ApplicationUser> Get()
 		{
 			return m_userManager.Users;
-
-			//return m_repository.User.FindAll();
 		}
 
 		[HttpGet("{id}")]
 		public ApplicationUser Get(string id)
 		{
 			return m_userManager.FindByIdAsync(id).GetAwaiter().GetResult();
-
-			//return m_repository.User.FindByCondition(e => e.Id == id).FirstOrDefault();
 		}
 
 		[AllowAnonymous]
 		[HttpPost("authenticate")]
-		public ActionResult<ClientUser> Authenticate([FromBody]Login login) // TODO: create login class
+		public ActionResult<ClientUser> Authenticate([FromBody]Login login)
 		{
 			var user = m_userManager.FindByNameAsync(login.Username).GetAwaiter().GetResult();
 			var result = m_signInManager.CheckPasswordSignInAsync(user, login.Password, false).GetAwaiter().GetResult();
-
-			//var user = m_repository.User.FindByCondition(e => e.UserName == username && e.PasswordHash == password).FirstOrDefault();
 
 			if (result.Succeeded)
 			{
@@ -85,9 +78,6 @@ namespace WebShop.Controllers
 			}
 
 			return ValidationProblem();
-
-			//m_repository.User.Create(user);
-			//m_repository.Save();
 		}
 
 		[HttpDelete("{id}")]
@@ -102,9 +92,6 @@ namespace WebShop.Controllers
 			}
 
 			return ValidationProblem();
-
-			//m_repository.User.Delete(id);
-			//m_repository.Save();
 		}
 	}
 }
