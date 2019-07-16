@@ -1,5 +1,4 @@
-<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark">
+<nav id="stickynavbar" class="navbar sticky-top navbar-expand navbar-dark bg-dark">
     <div class="navbar-nav" mr-auto>
         <!-- Left -->
         <a class="nav-item nav-link text-light" routerLink="/">Home</a>
@@ -11,3 +10,5 @@
         <a class="nav-item nav-link text-light" routerLink="/login" *ngIf="!currentUser">Login</a>
     </div>
 </nav>
+
+<div #spacer></div>

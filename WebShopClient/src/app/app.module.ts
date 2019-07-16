@@ -26,6 +26,8 @@ import { AccountComponent } from './layout/account/account.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 
+import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,8 @@ import { HeaderComponent } from './layout/header/header.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularStickyThingsModule
   ],
   providers: [
     AppConfig,
@@ -57,7 +60,7 @@ import { HeaderComponent } from './layout/header/header.component';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 
     // provider used to create fake backend
-    // fakeBackendProvider
+    fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })
