@@ -1,46 +1,12 @@
-  .bg1 {
-    background-image: 
-    linear-gradient(
-      rgba(0, 0, 0, 0.1),
-      rgba(0, 0, 0, 0.1)
-    ),
-    url("/assets/nature.jpg");
+.bg {
+  background-image: 
+  linear-gradient(
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1)
+  );
 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover
-  }
-
-  .bg2 {
-    background-image: 
-    linear-gradient(
-      rgba(0, 0, 0, 0.1),
-      rgba(0, 0, 0, 0.1)
-    ),
-    url("/assets/thailand.jpg");
-
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover
-  }
-  
-  .transparent{
-    background-color: transparent;
-  }
-
-  #seethrough{
-    text-align: center;
-    height: 20em;
-  }
-
-  #submitButton{
-    width: 30em;
-    display: block;
-    margin: 0 auto;
-  }
-
-  #message{
-    display: inline-block;
-  }
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover
+}

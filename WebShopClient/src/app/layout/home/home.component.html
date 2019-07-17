@@ -1,19 +1,15 @@
-<div class="bg1">
+<div class="bg" [ngStyle]="{'background-image': 'url(' + background1 + ')'}">
     <div class="jumbotron">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-6 offset-sm-3">
-                    <h1>Hi {{currentUser.firstName}}!</h1>
+            <div class="text-center">
+                <h1>Hi {{currentUser.firstName}}!</h1>
 
-                    <h2>Welcome to this site!</h2>
-                </div>
+                <h2>Welcome to this site!</h2>
             </div>
         </div>
     </div>
 
     <app-home-buy></app-home-buy>
-
-
 
     <div class="jumbotron">
         <div class="container">
@@ -33,16 +29,13 @@
         </div>
     </div>
 </div>
-
-<div class="bg2">
+<div class="bg" [ngStyle]="{'background-image': 'url(' + background2 + ')'}">
     <div class="jumbotron">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-6 offset-sm-3">
-                    <h1>Hi {{currentUser.firstName}}!</h1>
+            <div class="text-center">
+                <h1>Hi {{currentUser.firstName}}!</h1>
 
-                    <h2>Welcome to this site!</h2>
-                </div>
+                <h2>Welcome to this site!</h2>
             </div>
         </div>
     </div>
