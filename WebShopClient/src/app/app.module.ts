@@ -25,8 +25,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { AccountComponent } from './layout/account/account.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
-
-import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
+import { HomeBuyComponent } from './layout/home-buy/home-buy.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +37,8 @@ import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
     AlertComponent,
     AccountComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeBuyComponent
   ],
   imports: [
     BrowserModule,
@@ -50,8 +50,7 @@ import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
-    AngularStickyThingsModule
+    ReactiveFormsModule
   ],
   providers: [
     AppConfig,

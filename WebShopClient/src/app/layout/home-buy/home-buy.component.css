@@ -1,0 +1,14 @@
+.seethrough{
+    text-align: center;
+    height: 20em;
+  }
+
+  .wideButton{
+    width: 30em;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .message{
+    display: inline-block;
+  }
