@@ -20,12 +20,13 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { fakeBackendProvider } from './helpers/fake-backend.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
-import { HomeComponent } from './layout/home/home.component';
+import { HomeComponent } from './layout/main/home/home.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { AccountComponent } from './layout/account/account.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { HomeBuyComponent } from './layout/home-buy/home-buy.component';
+import { HomeBuyComponent } from './layout/main/home-buy/home-buy.component';
+import { ImagegridComponent } from './layout/main/imagegrid/imagegrid.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { HomeBuyComponent } from './layout/home-buy/home-buy.component';
     AccountComponent,
     FooterComponent,
     HeaderComponent,
-    HomeBuyComponent
+    HomeBuyComponent,
+    ImagegridComponent
   ],
   imports: [
     BrowserModule,
