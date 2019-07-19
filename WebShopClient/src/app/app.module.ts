@@ -27,6 +27,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { HomeBuyComponent } from './layout/main/home-buy/home-buy.component';
 import { ImagegridComponent } from './layout/main/imagegrid/imagegrid.component';
+import { ImageCarouselComponent } from './layout/main/image-carousel/image-carousel.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ImagegridComponent } from './layout/main/imagegrid/imagegrid.component'
     FooterComponent,
     HeaderComponent,
     HomeBuyComponent,
-    ImagegridComponent
+    ImagegridComponent,
+    ImageCarouselComponent
   ],
   imports: [
     BrowserModule,

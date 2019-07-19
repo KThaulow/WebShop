@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-imagegrid',
-  templateUrl: './imagegrid.component.html',
-  styleUrls: ['./imagegrid.component.css']
+  selector: 'app-image-carousel',
+  templateUrl: './image-carousel.component.html',
+  styleUrls: ['./image-carousel.component.css']
 })
-export class ImagegridComponent implements OnInit {
+export class ImageCarouselComponent implements OnInit {
+
   images: EImage[];
 
   constructor() { }
@@ -24,5 +25,3 @@ export class ImagegridComponent implements OnInit {
     this.images.push(new EImage("Image 10", "/assets/gridimages/xkU-FYXiRQU.jpg"));
   }
 }
-
-
