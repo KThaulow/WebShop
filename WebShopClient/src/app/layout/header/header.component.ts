@@ -9,10 +9,9 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  private currentUser: User;
+  public currentUser: User;
 
-  constructor(private router: Router,
-    private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
