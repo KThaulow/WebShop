@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EImage } from '../../../models/eimage';
 
 @Component({
   selector: 'app-imagegrid',
