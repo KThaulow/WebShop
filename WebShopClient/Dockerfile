@@ -1,23 +1,23 @@
-### STAGE 1: Build ###
-# Alpine image of node (lightweight)
-FROM node:alpine as builder
-#Copy package.json and package-lock.json
-COPY package*.json ./
-## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
-RUN npm i && mkdir /builddir && cp -R ./node_modules ./builddir
+## Stage 0, "build-stage", based on Node.js, to build and compile Angular
+# Node.js docker images with dependencies and Nginx configuration
+FROM tiangolo/node-frontend:10 as build-stage
 # Set working directory
-WORKDIR /builddir
-# Copy everything else to the working directory
-COPY . .
-## Build the angular app in production mode and store the artifacts in dist folder
-RUN $(npm bin)/ng build --prod
+WORKDIR /app
+# Copy package.json and package-lock.json
+COPY package*.json /app/
+# Install dependencies from package.json
+RUN npm install
+# Copy code to directory
+COPY ./ /app/
+# Set configuration to production for Angular build
+ARG configuration=production
+# Build and set variables for ng
+RUN npm run build -- --output-path=./dist/out --configuration $configuration
 
-### STAGE 2: Setup ###
-# Alpine image of nginx
-FROM nginx:alpine
-## Remove default nginx website
-RUN rm -rf /usr/share/nginx/html/*
-## Copy our default nginx config
-COPY --from=builder nginx.conf /etc/nginx/nginx.conf
-## From ‘builder’ stage copy over the artifacts in dist folder to default nginx public folder
-COPY --from=builder /app/dist /usr/share/nginx/html
+## Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
+# Get Nginx web server image
+FROM nginx:1.15
+# Copy compiled app from stage 0 to nginx
+COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
+# Override default nginx conf with nginx.conf provided in tiangolo/node-frontend to enable Angular router
+COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
