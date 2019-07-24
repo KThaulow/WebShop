@@ -4,8 +4,10 @@ services:
 
 # Build docker image
 before_install:
+ - cd WebShopClient
   - docker build -t thaulow/webshopclient .
 
 # Run tests
 script:
+  - cd WebShopClient
   - docker run -e CI=true thaulow/webshopclient npm run test -- --browsers ChromeHeadlessNoSandbox --watch=false
