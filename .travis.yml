@@ -9,4 +9,4 @@ before_install:
 
 # Run tests
 script:
-  - docker run -e CI=true thaulow/webshopclient npm run test -- --browsers ChromeHeadlessNoSandbox --watch=false
+  - docker run thaulow/webshopclient npm run test -- --browsers ChromeHeadlessNoSandbox --watch=false
