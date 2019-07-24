@@ -1,0 +1,11 @@
+sudo: required
+services:
+  - docker
+
+# Build docker image
+before_install:
+  - docker build -t thaulow/webshopclient .
+
+# Run tests
+script:
+  - docker run -e CI=true thaulow/webshopclient npm run test -- --browsers ChromeHeadlessNoSandbox --watch=false
