@@ -27,8 +27,8 @@ before_script:
 - npm install
 
 script: 
-- npm run test -- --watch=false
-- npm run e2e
+- npm run test -- --browsers ChromeHeadlessNoSandbox --watch=false
+# - npm run e2e
 
 # Build docker image
 # after_success:
