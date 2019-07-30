@@ -8,5 +8,5 @@ before_install:
   - docker build -t thaulow/webshopclient .
 
 # Run tests
-script:
-  - docker run thaulow/webshopclient npm run test -- --browsers ChromeHeadlessNoSandbox --watch=false
+# script:
+  # - docker run thaulow/webshopclient npm run test -- --browsers ChromeHeadlessNoSandbox --watch=false
