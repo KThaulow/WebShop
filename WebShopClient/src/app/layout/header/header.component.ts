@@ -12,7 +12,7 @@ import { IAuthenticationService } from 'src/app/services/iauthentication.service
 export class HeaderComponent implements OnInit {
   public currentUser: User;
 
-  constructor(private authenticationService: IAuthenticationService) {
+  constructor(private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 

@@ -29,6 +29,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { HomeBuyComponent } from './layout/main/home-buy/home-buy.component';
 import { ImagegridComponent } from './layout/main/imagegrid/imagegrid.component';
 import { ImageCarouselComponent } from './layout/main/image-carousel/image-carousel.component';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ImageCarouselComponent } from './layout/main/image-carousel/image-carou
     AppConfig,
     AuthGuard,
     UserService,
+    AuthenticationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 
     // provider used to create fake backend
