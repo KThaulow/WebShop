@@ -4,10 +4,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AppConfig } from '../config/config';
 import { User } from '../models/user';
-import { IAuthenticationService } from './iauthentication.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthenticationService implements IAuthenticationService {
+export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     private pathAPI = this.config.setting['PathAPI'];
     public currentUser: Observable<User>;

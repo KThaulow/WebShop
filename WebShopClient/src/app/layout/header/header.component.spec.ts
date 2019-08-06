@@ -6,12 +6,15 @@
 // import { User } from 'src/app/models/user';
 // import { of, Observable, BehaviorSubject } from 'rxjs';
 // import { AppConfig } from 'src/app/config/config';
-// import { IAuthenticationService } from 'src/app/services/iauthentication.service';
 // import { Injectable } from '@angular/core';
 
 // describe('HeaderComponent', () => {
 //   let component: HeaderComponent;
 //   let fixture: ComponentFixture<HeaderComponent>;
+
+//   let AuthenticationServiceSpy: {
+//     currentUser: jasmine.Spy,
+//   };
 
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
@@ -19,19 +22,22 @@
 //       imports: [HttpClientModule],
 //       providers: [{
 //         provide: AuthenticationService,
-//         useValue: AuthenticationServiceMock
+//         useValue: AuthenticationServiceSpy
 //       }]
 //     })
 //       .compileComponents();
 //   }));
 
 //   beforeEach(() => {
+//     AuthenticationServiceSpy = jasmine.createSpyObj("AuthenticationService", ["currentUser"]);
 //     fixture = TestBed.createComponent(HeaderComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });
 
 //   it('should create', () => {
+//     AuthenticationServiceSpy.currentUser.and.returnValue(of(new User()));
+
 //     expect(component).toBeTruthy();
 //   });
 // });
