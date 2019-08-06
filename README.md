@@ -1,5 +1,7 @@
 # WebShop
 
+[![Build Status](https://travis-ci.org/KThaulow/WebShop.svg?branch=master)
+
 ## Angular
 #### ng-bootstrap
 npm install --save @ng-bootstrap/ng-bootstrap
