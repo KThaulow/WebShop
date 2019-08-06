@@ -4,9 +4,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AppConfig } from '../config/config';
 import { User } from '../models/user';
+import { IAuthenticationService } from './iauthentication.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthenticationService {
+export class AuthenticationService implements IAuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     private pathAPI = this.config.setting['PathAPI'];
     public currentUser: Observable<User>;
@@ -16,11 +17,11 @@ export class AuthenticationService {
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
-    public get currentUserValue(): User {
+    currentUserValue(): User {
         return this.currentUserSubject.value;
     }
 
-    login(username, password) {
+    login(username, password): Observable<User> {
         console.log('Login');
 
         return this.http.post<any>(`${this.pathAPI}/users/authenticate`, { username, password })
