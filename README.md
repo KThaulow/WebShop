@@ -1,6 +1,6 @@
 # WebShop
 
-[![Build Status](https://travis-ci.org/KThaulow/WebShop.svg?branch=master)
+![Build Status](https://travis-ci.org/KThaulow/WebShop.svg?branch=master)
 
 ## Angular
 #### ng-bootstrap
