@@ -12,10 +12,7 @@ export class HeaderComponent implements OnInit {
   public currentUser: User;
 
   constructor(private authenticationService: AuthenticationService) {
-    console.log(authenticationService);
-    // console.log(authenticationService.currentUser);
-    // console.log(authenticationService.currentUser1);
-    // this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit() {
