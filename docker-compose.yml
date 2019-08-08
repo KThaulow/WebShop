@@ -1,15 +1,15 @@
 version: "3"
 services:
-  backend:
-    build:
-      context: .
-      dockerfile: WebShopServer/Dockerfile
-    ports:
-      - "5000:5000"
-      - "5001:5001"
+  # backend:
+  #   build:
+  #     context: WebShopServer
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "5000:5000"
+  #     - "5001:5001"
   client:
     build:
-      context: .
-      dockerfile: WebShopClient/Dockerfile
+      context: WebShopClient
+      dockerfile: Dockerfile
     ports:
       - "4200:4200"
