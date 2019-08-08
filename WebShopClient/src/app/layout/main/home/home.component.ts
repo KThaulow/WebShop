@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   public background2: string;
 
   constructor(private authenticationService: AuthenticationService) {
-    this.currentUser = this.authenticationService.currentUserValue;
+    this.currentUser = this.authenticationService.currentUserValue();
   }
 
   ngOnInit() {
