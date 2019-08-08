@@ -35,5 +35,5 @@ after_success:
   - cd WebShopClient
   - docker build -t thaulow/webshopclient .
   # Run tests
-  # - docker run thaulow/webshopclient npm run test -- --browsers ChromeHeadlessNoSandbox --watch=false
+  - docker run thaulow/webshopclient npm run test -- --browsers ChromeHeadlessNoSandbox --watch=false
   
