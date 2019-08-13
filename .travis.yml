@@ -28,12 +28,9 @@ before_script:
 
 script: 
 - npm run test -- --browsers ChromeHeadlessNoSandbox --watch=false
-# - npm run e2e
+- npm run e2e
 
 # Build docker image
 after_success:
   - cd WebShopClient
   - docker build -t thaulow/webshopclient .
-  # Run tests
-  - docker run thaulow/webshopclient npm run test -- --browsers ChromeHeadlessNoSandbox --watch=false
-  
