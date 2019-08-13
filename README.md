@@ -4,6 +4,7 @@
 ![Build Status](https://travis-ci.org/KThaulow/WebShop.svg?branch=master)
 
 ### CI tool
+Travis CI
 https://travis-ci.org/KThaulow/WebShop
 
 ### Docker
@@ -30,5 +31,7 @@ npm install karma-chrome-launcher --save-dev
 
 ## Deploy
 ### Docker
+Docker .Net Core & Tiangolo (Node.js with Nginx)
+Docker compose
 
 ### AWS
