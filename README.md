@@ -2,6 +2,7 @@
 
 ![Build Status](https://travis-ci.org/KThaulow/WebShop.svg?branch=master)
 
+### CI tool
 https://travis-ci.org/KThaulow/WebShop
 
 ## Angular
@@ -20,3 +21,5 @@ npm install karma-chrome-launcher --save-dev
 
 
 ## ASP.NET Core Web API
+
+### EF Core
