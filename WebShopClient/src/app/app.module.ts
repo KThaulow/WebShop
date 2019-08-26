@@ -12,7 +12,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './layout/identity/login/login.component';
-import { UsersComponent } from './layout/identity/users/users.component'
 import { AppConfig } from './config/config';
 import { AuthGuard } from './helpers/authguard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,7 +34,6 @@ import { AuthenticationService } from './services/authentication.service';
   declarations: [
     AppComponent,
     LoginComponent,
-    UsersComponent,
     RegisterComponent,
     HomeComponent,
     AlertComponent,

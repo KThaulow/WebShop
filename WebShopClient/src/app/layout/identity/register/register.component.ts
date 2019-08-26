@@ -19,8 +19,6 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private alertService: AlertService
   ) {
-    console.log('RegisterComponent')
-
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
       console.log('Is already logged in')
@@ -41,8 +39,6 @@ export class RegisterComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
-    console.log('Submitting')
-
     this.submitted = true;
 
     // reset alerts on submit

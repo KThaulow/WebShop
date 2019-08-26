@@ -8,9 +8,9 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public currentUser: User;
-  public background1: string;
-  public background2: string;
+  currentUser: User;
+  background1: string;
+  background2: string;
 
   constructor(private authenticationService: AuthenticationService) {
     this.currentUser = this.authenticationService.currentUserValue;
