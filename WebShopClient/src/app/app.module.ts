@@ -31,6 +31,7 @@ import { ImageCarouselComponent } from './layout/main/image-carousel/image-carou
 import { AuthenticationService } from './services/authentication.service';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { CustomTitleCasePipe } from './pipes/customtitlecase.pipe';
+import { LikeComponent } from './components/like/like.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CustomTitleCasePipe } from './pipes/customtitlecase.pipe';
     ImagegridComponent,
     ImageCarouselComponent,
     FavoriteComponent,
-    CustomTitleCasePipe
+    CustomTitleCasePipe,
+    LikeComponent
   ],
   imports: [
     BrowserModule,
