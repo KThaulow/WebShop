@@ -18,7 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './layout/identity/register/register.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { fakeBackendProvider } from './helpers/fake-backend.interceptor';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { HomeComponent } from './layout/main/home/home.component';
 import { AlertComponent } from './components/alert/alert.component';
@@ -29,6 +29,8 @@ import { HomeBuyComponent } from './layout/main/home-buy/home-buy.component';
 import { ImagegridComponent } from './layout/main/imagegrid/imagegrid.component';
 import { ImageCarouselComponent } from './layout/main/image-carousel/image-carousel.component';
 import { AuthenticationService } from './services/authentication.service';
+import { FavoriteComponent } from './components/favorite/favorite.component';
+import { CustomTitleCasePipe } from './pipes/customtitlecase.pipe';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { AuthenticationService } from './services/authentication.service';
     HeaderComponent,
     HomeBuyComponent,
     ImagegridComponent,
-    ImageCarouselComponent
+    ImageCarouselComponent,
+    FavoriteComponent,
+    CustomTitleCasePipe
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,8 @@ import { AuthenticationService } from './services/authentication.service';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [
     AppConfig,
