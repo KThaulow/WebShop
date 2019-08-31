@@ -31,7 +31,9 @@ npm install karma-chrome-launcher --save-dev
 
 ## Deploy
 ### Docker
-Docker .Net Core & Tiangolo (Node.js with Nginx)
+Docker .Net Core
+Docker nginx
+Docker node
 Docker compose
 
 ### AWS
